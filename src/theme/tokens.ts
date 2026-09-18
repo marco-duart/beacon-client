@@ -1,0 +1,88 @@
+export const lightTokens = {
+  colors: {
+    bg: '#f6f7fb',
+    bgSubtle: '#eef0f6',
+    surface: '#ffffff',
+    surfaceHover: '#f9fafc',
+    border: '#e2e5ee',
+    borderStrong: '#cbd0dd',
+    text: '#161a2b',
+    textMuted: '#5b6178',
+    textSubtle: '#8b91a7',
+
+    brand9: '#5b5bf0',
+    brand10: '#4b4be0',
+    brandText: '#ffffff',
+    brandSoft: '#eeeeff',
+
+    success9: '#1a9c6f',
+    successSoft: '#e5f7ef',
+    warning9: '#c8790a',
+    warningSoft: '#fdf1de',
+    danger9: '#e0344c',
+    dangerSoft: '#fde8ec',
+    info9: '#2b7fd6',
+    infoSoft: '#e7f1fc',
+
+    overlay: 'rgba(20, 22, 38, 0.45)',
+  },
+  space: {
+    1: '4px',
+    2: '8px',
+    3: '12px',
+    4: '16px',
+    5: '24px',
+    6: '32px',
+    7: '48px',
+    8: '64px',
+  },
+  radii: { sm: '6px', md: '10px', lg: '16px', pill: '999px' },
+  fonts: {
+    sans: '"Inter", ui-sans-serif, system-ui, -apple-system, sans-serif',
+    mono: '"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace',
+  },
+  fontSizes: {
+    1: '12px',
+    2: '13px',
+    3: '14px',
+    4: '16px',
+    5: '20px',
+    6: '26px',
+    7: '34px',
+  },
+  lineHeights: { tight: '1.2', normal: '1.5' },
+  shadows: {
+    sm: '0 1px 2px rgba(22, 26, 43, 0.06)',
+    md: '0 4px 16px rgba(22, 26, 43, 0.08)',
+    lg: '0 12px 32px rgba(22, 26, 43, 0.12)',
+  },
+  zIndices: { dropdown: 100, modal: 200, toast: 300 },
+} as const;
+
+export const darkTokens: Record<keyof typeof lightTokens.colors, string> = {
+  bg: '#0f111a',
+  bgSubtle: '#151827',
+  surface: '#1a1d2e',
+  surfaceHover: '#20243a',
+  border: '#2a2f45',
+  borderStrong: '#3a4060',
+  text: '#eef0fa',
+  textMuted: '#a7acc4',
+  textSubtle: '#787f9c',
+
+  brand9: '#7c7cf7',
+  brand10: '#9191ff',
+  brandText: '#12122b',
+  brandSoft: '#22224a',
+
+  success9: '#35d399',
+  successSoft: '#123227',
+  warning9: '#f0a63f',
+  warningSoft: '#332507',
+  danger9: '#ff6b81',
+  dangerSoft: '#3a1620',
+  info9: '#5fa8ef',
+  infoSoft: '#122a42',
+
+  overlay: 'rgba(6, 7, 14, 0.6)',
+};
