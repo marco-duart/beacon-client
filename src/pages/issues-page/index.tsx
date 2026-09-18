@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import type { IssuesControllerFindAllQueryParams } from '@/api/generated';
 import { AppShell } from '@/components/layout/app-shell';
 import { Card } from '@/components/ui/card';
+import { EmptyState } from '@/components/ui/empty-state';
 import { Pager } from '@/components/ui/pager';
 import {
   ISSUE_LEVELS,
@@ -33,7 +34,7 @@ export function IssuesPage() {
     pageSize: PAGE_SIZE,
   };
 
-  const { items, total, isLoading } = useIssues(filters);
+  const { items, total, isLoading, error } = useIssues(filters);
 
   function updateParam(key: string, value: string) {
     const next = new URLSearchParams(searchParams);
@@ -90,15 +91,19 @@ export function IssuesPage() {
         </Select>
       </Filters>
 
-      <Card padding="none">
-        <IssueList issues={items} isLoading={isLoading} />
-        <Pager
-          page={page}
-          pageSize={PAGE_SIZE}
-          total={total}
-          onPageChange={goToPage}
-        />
-      </Card>
+      {error ? (
+        <EmptyState title="Não foi possível carregar as issues" description={error} />
+      ) : (
+        <Card padding="none">
+          <IssueList issues={items} isLoading={isLoading} />
+          <Pager
+            page={page}
+            pageSize={PAGE_SIZE}
+            total={total}
+            onPageChange={goToPage}
+          />
+        </Card>
+      )}
     </AppShell>
   );
 }

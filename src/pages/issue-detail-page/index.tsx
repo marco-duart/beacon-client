@@ -1,5 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { AppShell } from '@/components/layout/app-shell';
+import { EmptyState } from '@/components/ui/empty-state';
 import { Spinner } from '@/components/ui/spinner';
 import { IssueDetail } from '@/features/issues/issue-detail';
 import { useIssueDetail } from '@/features/issues/hooks/use-issue-detail';
@@ -16,15 +17,17 @@ export function IssueDetailPage() {
 }
 
 function IssueDetailContent({ issueId }: { issueId: number }) {
-  const { issue, events, isLoading, refresh } = useIssueDetail(issueId);
+  const { issue, events, isLoading, error, refresh } = useIssueDetail(issueId);
 
   return (
     <AppShell title={issue ? issue.type : 'Issue'}>
-      {isLoading || !issue ? (
-        <Spinner />
-      ) : (
+      {isLoading ? <Spinner /> : null}
+      {!isLoading && error ? (
+        <EmptyState title="Não foi possível carregar a issue" description={error} />
+      ) : null}
+      {!isLoading && !error && issue ? (
         <IssueDetail issue={issue} events={events} onStatusChanged={refresh} />
-      )}
+      ) : null}
     </AppShell>
   );
 }
